@@ -24,8 +24,8 @@ def counttrees(input, right, down):
             input2.append(input[i])
         elif i % down == 0: 
             input2.append(input[i]) 
-    else : 
-        pass 
+        else : 
+            pass 
     K = len(input2)*right
     input3 = []
     for line in input2:
