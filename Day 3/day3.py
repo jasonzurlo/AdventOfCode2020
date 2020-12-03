@@ -18,6 +18,7 @@ def counttrees(input, right, down):
     right -- the number of position the sledge moves to the right
     down -- the number of positions the sledge moves down 
     """
+    #select the rows we want according to how many steps down we take each time
     input2 = []
     for i in range(0, len(input)): 
         if i == 0:
@@ -26,13 +27,15 @@ def counttrees(input, right, down):
             input2.append(input[i]) 
         else : 
             pass 
+    #adjust string length according to right steps so we can get to the bottom
     K = len(input2)*right
     input3 = []
     for line in input2:
         line = (line * (K//len(line)+ 1))[:K]
         input3.append(line)
-        trees = 0
-        i = 0
+    #count the trees we crash against!
+    trees = 0
+    i = 0
     for line in input3:
         if line[i] == "#":
             trees = trees + 1
