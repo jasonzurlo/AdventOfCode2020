@@ -1,119 +1,54 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Dec  3 16:38:37 2020
+Created on Thu Dec  3 18:29:41 2020
 
 @author: Marc
 """
+
 #open input
 alllines = []
-with open(r"C:\Users\Marc\Documents\GitHub\AdventOfCode\AdventOfCode2020\Day 3/Day3.txt","r") as f:
+with open(r"Day3.txt","r") as f:
 	for line in f.readlines():
 		alllines.append(line.rstrip())
 
-#Part 1
-
-#get each row to the right length
-        
-K = (len(alllines)*3)
-longlines = []
-for line in alllines:
-    line = (line * (K//len(line)+ 1))[:K]
-    longlines.append(line)
-
-#count those damn trees
-
-trees3 = 0
-
-i = 0
-
-for line in longlines:
-        if line[i] == "#":
-            trees3 = trees3 + 1
-        else:
-            pass
-        i = i +3
-
-#Part 2
-        
-#Right one down one
-
-K = (len(alllines))
-longlines = []
-for line in alllines:
-    line = (line * (K//len(line)+ 1))[:K]
-    longlines.append(line)        
-
-i=0
-trees1 = 0
-for line in longlines:
-        if line[i] == "#":
-            trees1 = trees1 + 1
-        else:
-            pass
-        i = i +1
-        
-#Right five one down
-        
-K = (len(alllines)*5)
-longlines = []
-for line in alllines:
-    line = (line * (K//len(line)+ 1))[:K]
-    longlines.append(line)        
-
-i=0
-trees5 = 0
-for line in longlines:
-        if line[i] == "#":
-            trees5 = trees5 + 1
-        else:
-            pass
-        i = i + 5
-        
-#Right seven one down
-        
-K = (len(alllines)*7)
-longlines = []
-for line in alllines:
-    line = (line * (K//len(line)+ 1))[:K]
-    longlines.append(line)        
-
-i=0
-trees7 = 0
-for line in longlines:
-        if line[i] == "#":
-            trees7 = trees7 + 1
-        else:
-            pass
-        i = i +7
-
-#Right one one downdown two
-        
-K = (len(alllines))
-longlines = []
-for line in alllines:
-    line = (line * (K//len(line)+ 1))[:K]
-    longlines.append(line)        
-
-#keep only even indexed lines
-    
-evenlines = []
-
-for i in range(0, len(longlines)): 
-    if i == 0:
-        evenlines.append(longlines[i])
-    elif i % 2 == 0: 
-        evenlines.append(longlines[i]) 
+def counttrees(input, right, down):
+    """ counts the trees in a slope, for Advent of Code 2020, day 3
+    Keyword :
+    input -- a list of strings, corresponding to the "slope"
+    right -- the number of position the sledge moves to the right
+    down -- the number of positions the sledge moves down 
+    """
+    input2 = []
+    for i in range(0, len(input)): 
+        if i == 0:
+            input2.append(input[i])
+        elif i % down == 0: 
+            input2.append(input[i]) 
     else : 
         pass 
-  
-
-i=0
-trees12 = 0
-for line in evenlines:
+    K = len(input2)*right
+    input3 = []
+    for line in input2:
+        line = (line * (K//len(line)+ 1))[:K]
+        input3.append(line)
+        trees = 0
+        i = 0
+    for line in input3:
         if line[i] == "#":
-            trees12 = trees12 + 1
+            trees = trees + 1
         else:
             pass
-        i = i +1
+        i = i + right
+    return trees
 
-result = trees1*trees12*trees3*trees5*trees7
+#Part 1
+
+trees3 = counttrees(alllines, 3, 1)
+
+#Part 2
+trees1 = counttrees(alllines, 1, 1)
+trees5 = counttrees(alllines, 5, 1)
+trees7 = counttrees(alllines, 7, 1)
+trees12 = counttrees(alllines, 1, 2)
+
+result = trees3*trees1*trees12*trees5*trees7
