@@ -95,13 +95,13 @@ validpassports = resultsyes["passport"]
 
 #create new regex objects
 
-byrRegex = re.compile(r"(byr:)(\d\d\d\d)")
-iyrRegex = re.compile(r"(iyr:)(\d\d\d\d)")
-eyrRegex = re.compile(r"(eyr:)(\d\d\d\d)")   
+byrRegex = re.compile(r"(byr:)(\d\d\d\d)(\b)")
+iyrRegex = re.compile(r"(iyr:)(\d\d\d\d)(\b)")
+eyrRegex = re.compile(r"(eyr:)(\d\d\d\d)(\b)")   
 hgtRegex = re.compile(r"(hgt:)(\d){2,3}(\w\w)")
-hclRegex = re.compile(r"(hcl:)(#)([0123456789abcdef]){6}(\s)")
-pidRegex = re.compile(r"(pid:)([0123456789]){9}")
-eclRegex = re.compile(r"(ecl:)(\w\w\w)")
+hclRegex = re.compile(r"(hcl:)(#)([0123456789abcdef]){6}(\b)")
+pidRegex = re.compile(r"(pid:)([0123456789]){9}(\b)")
+eclRegex = re.compile(r"(ecl:)(\w\w\w)(\b)")
 
 byrs = []
 iyrs = []
