@@ -95,13 +95,13 @@ validpassports = resultsyes["passport"]
 
 #create new regex objects
 
-byrRegex = re.compile(r"(byr:)(\d\d\d\d)(\n)*")
-iyrRegex = re.compile(r"(iyr:)(\d\d\d\d)(\n)*")
-eyrRegex = re.compile(r"(eyr:)(\d\d\d\d)(\n)*")
-hgtRegex = re.compile(r"(hgt:)(\d){2,3}(\w\w)(\n)*")
-hclRegex = re.compile(r"(hcl:)(#)([0123456789abcdef]){6}(\n)*")
-pidRegex = re.compile(r"(pid:)(\d){9}(\n)*")
-eclRegex = re.compile(r"(ecl:)(\w\w\w)(\n)*")
+byrRegex = re.compile(r"(byr:)(\d\d\d\d)")
+iyrRegex = re.compile(r"(iyr:)(\d\d\d\d)")
+eyrRegex = re.compile(r"(eyr:)(\d\d\d\d)")   
+hgtRegex = re.compile(r"(hgt:)(\d){2,3}(\w\w)")
+hclRegex = re.compile(r"(hcl:)(#)([0123456789abcdef]){6}")
+pidRegex = re.compile(r"(pid:)([0123456789]){9}")
+eclRegex = re.compile(r"(ecl:)(\w\w\w)")
 
 byrs = []
 iyrs = []
@@ -173,7 +173,7 @@ results2 = results2[(results2["iyr"] >= 2010) & (results2["iyr"] <= 2020)]
 
 #filter for eyr
 
-results2 = results2[(results2["eyr"] >= 2020) & (results2["byr"] <= 2030)]
+results2 = results2[(results2["eyr"] >= 2020) & (results2["eyr"] <= 2030)]
 
 #filter for hcl
 
