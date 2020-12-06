@@ -32,9 +32,7 @@ for line in forms3:
 #get the total number of"yes" answers
 import numpy as np
 
-lengths = np.array(lengths)
-
-result = lengths.sum()
+result = sum(np.array(lengths))
 
 #Part 2: get all questions in which everyone answered "yes"
 
